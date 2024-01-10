@@ -8,7 +8,7 @@ edition = "2021"
 panic = 'abort'
 
 [dependencies]
-containerd-sandbox = {git="https://github.com/kuasar-io/rust-extensions.git"}
+containerd-sandbox = { path = "../../../rust-extensions/crates/sandbox" } #{git="https://github.com/kuasar-io/rust-extensions.git"}
 serde = "1.0.139"
 lazy_static = "1.4.0"
 nix = "0.24.1"

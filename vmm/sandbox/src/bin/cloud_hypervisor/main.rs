@@ -16,13 +16,33 @@ limitations under the License.
 
 use vmm_sandboxer::{cloud_hypervisor::init_cloud_hypervisor_sandboxer, utils::init_logger};
 
+pub mod built_info {
+    // The file has been placed there by the build script.
+    include!(concat!(env!("OUT_DIR"), "/built.rs"));
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+
+
+    println!("Git commit: {:?}", built_info::GIT_VERSION);
+    println!("dirty: {:?}", built_info::GIT_DIRTY);
+    println!("build time: {:?}", built_info::BUILT_TIME_UTC);
+
+
     // Initialize sandboxer
     let sandboxer = init_cloud_hypervisor_sandboxer().await?;
 
+
+
     // Initialize log
     init_logger(sandboxer.log_level());
+
+    // ??????
+
+
+
+    // ?? git commit?dirty ????????
 
     // Run the sandboxer
     containerd_sandbox::run("kuasar-sandboxer", sandboxer)

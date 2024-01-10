@@ -7,10 +7,15 @@ edition = "2021"
 [profile.release]
 panic = 'abort'
 
+[build-dependencies]
+built = { version = "0.7.0", features=["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }
+
 [dependencies]
+built = { version = "0.7.0", features=["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }
+
 tokio = { version = "1.19.2", features = ["full"] }
-containerd-sandbox = {git="https://github.com/kuasar-io/rust-extensions.git"}
-containerd-shim = { git="https://github.com/kuasar-io/rust-extensions.git", features=["async"] }
+containerd-sandbox = { path = "../../../rust-extensions/crates/sandbox" } #{git="https://github.com/kuasar-io/rust-extensions.git"}
+containerd-shim = { path = "../../../rust-extensions/crates/shim", features=["async"] }
 vmm-common = { path = "../common" }
 bytefmt = "0.1.7"
 async-trait = "0.1.56"

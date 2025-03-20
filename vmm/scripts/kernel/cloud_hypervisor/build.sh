@@ -14,6 +14,7 @@
 # limitations under the License.
 
 set -e
+set -x
 
 readonly version=${1:-6.12.8}
 readonly base_dir="$(dirname $(readlink -f $0))"
